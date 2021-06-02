@@ -3,9 +3,12 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const Expense = require('./models/expenseModel.js')
 const User = require('./models/userModel.js')
+const Period = require('./models/periodModel.js')
 //const jwt = require('express-jwt')
 const expensesRouter = require('./routers/expensesRouter.js')(Expense)
 const userRouter = require('./routers/userRouter.js')(User)
+const periodRouter = require('./routers/periodsRouter.js')(Period)
+
 
 const connectDB = async()=> {
   try{
@@ -25,6 +28,7 @@ app.use(bodyParser.json())
 //app.all("/api/*", jwt({secret: "714680tlf", algorithms: ["HS256"]}).unless({ path : ["/api/login"]}))
 app.use('/api', expensesRouter)
 app.use('/api', userRouter)
+app.use('/api', periodRouter)
 
 /* app.get('/',(req,res) => {
   res.send('Hello World')

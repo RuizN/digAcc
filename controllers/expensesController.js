@@ -30,6 +30,7 @@ const expensesController = (Expense) =>{
 
         const expense = new Expense(expenseObject)
         await expense.save()
+        
         return res.status(201).json(expense)
       }
       catch (error) {
