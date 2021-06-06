@@ -17,7 +17,7 @@ const periodsController = (Period) =>{
   const postPeriod = async (req , res) => {
     try {
       const {body} = req
-      console.log('Body:',body)
+      //console.log('Body:',body)
       const periodObject = {
         periodName : body.periodName,
         periodExpenses : body.periodExpenses,
@@ -49,16 +49,16 @@ const periodsController = (Period) =>{
     }
   }*/
 
-  const putPeriodId = async(req , res) => {
+  const putPeriodId = async(expenseData) => {
     try {
-      const {params , body} = req
-      
+      //const {params , body} = req
+      //console.log('req', req)
       const response = await Period.updateOne({
-        _id: params.periodId
+        periodName: expenseData.periodFirstInstallment
       }, {
-        $set: {
-          periodName : body.periodName,
-          periodExpenses : body.periodExpenses.push("Hola"), 
+        $push: {
+         // periodName : body.periodName,
+          periodExpenses : expenseData._id
          // periodIncomes: body.periodIncomes,
         }
       })

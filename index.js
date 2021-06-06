@@ -8,11 +8,11 @@ const Period = require('./models/periodModel.js')
 const expensesRouter = require('./routers/expensesRouter.js')(Expense)
 const userRouter = require('./routers/userRouter.js')(User)
 const periodRouter = require('./routers/periodsRouter.js')(Period)
-
+const uri = "mongodb+srv://digAccDev:digAddDevPass@clusterdigacc.lium7.mongodb.net/digAccDB?retryWrites=true&w=majority"
 
 const connectDB = async()=> {
   try{
-    await mongoose.connect('mongodb://localhost/dAccAPI')
+    await mongoose.connect(uri)
     console.log('SE CONECTO A LA DB')
   } catch (error){
     throw error

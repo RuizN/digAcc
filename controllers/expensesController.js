@@ -1,5 +1,8 @@
 //const jwt = require('jsonwebtoken')
 //const bcrypt = require('bcrypt') 
+const Period = require('../models/periodModel.js')
+const periodsController = require('../controllers/periodsController.js')
+const controller = periodsController(Period)
 
 const expensesController = (Expense) =>{
 
@@ -17,7 +20,7 @@ const expensesController = (Expense) =>{
   const postExpenses = async (req , res) => {
     try {
       const {body} = req
-      console.log('Body:',body)
+    
       const expenseObject = {
         amount : body.amount,
         type : body.type,
@@ -27,10 +30,18 @@ const expensesController = (Expense) =>{
         paymentMethod: body.paymentMethod,
         description: body.description,
        }
+      
 
         const expense = new Expense(expenseObject)
         await expense.save()
-        
+
+      /*  const expenseData = {
+        periodFirstInstallment : expense.periodFirstInstallment,
+        expenseId : expense._id,
+       } */
+
+       controller.putPeriodId(expense)
+       
         return res.status(201).json(expense)
       }
       catch (error) {

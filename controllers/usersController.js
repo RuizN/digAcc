@@ -17,7 +17,7 @@ const usersController = (User) =>{
   const postUser = async (req , res) => {
     try {
       const {body} = req
-      console.log('Body:',body)
+      //console.log('Body:',body)
      // const saltRound = 10
     // const encryptedPassword = await bcrypt.hash(body.password, saltRound)
 
